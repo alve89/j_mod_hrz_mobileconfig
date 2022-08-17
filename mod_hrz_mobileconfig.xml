@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.5" client="site" method="upgrade">
+    <name>Apple Mobileconfig File Creator</name>
+    <author>Stefan Herzog</author>
+    <version>0.0.1</version>
+    <description>MOD_HRZ_MOBILECONFIG_DESC</description>
+
+    <scriptfile>script.php</scriptfile>
+    <files>
+        <filename>mod_hrz_mobileconfig.xml</filename>
+        <filename module="mod_hrz_mobileconfig">mod_hrz_mobileconfig.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>css</folder>
+        <folder>tmpl</folder>
+        <folder>sql</folder>
+    </files>
+    <config>
+		<fields name="params">
+      <fieldset name="wifi">
+        <field
+          name="wifi_ssid"
+          type="text"
+          label="MOD_HRZ_MOBILECONFIG_WIFI_SSID_LABEL"
+          description="MOD_HRZ_MOBILECONFIG_WIFI_SSID_DESC" />
+          <field
+            name="wifi_password"
+            type="password"
+            label="MOD_HRZ_MOBILECONFIG_WIFI_PASSWORD_LABEL"
+            description="MOD_HRZ_MOBILECONFIG_WIFI_PASSWORD_DESC" />
+      </fieldset>
+      <fieldset name="email">
+      </fieldset>
+      <fieldset name="caldav">
+      </fieldset>
+      <fieldset name="carddav">
+      </fieldset>
+      <fieldset name="vpn">
+      </fieldset>
+		</fields>
+    </config>
+
+    <install>
+         <sql>
+             <file driver="mysql" charset="utf8">sql/mysql/install.mysql.utf8.sql</file>
+         </sql>
+    </install>
+
+    <uninstall>
+     <sql>
+         <file driver="mysql" charset="utf8">sql/mysql/uninstall.mysql.utf8.sql</file>
+     </sql>
+    </uninstall>
+
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/mysql/updates</schemapath>
+        </schemas>
+    </update>
+
+
+	<updateservers>
+	   <server type="extension" priority="1" name="mod_hrz_mobileconfig_update_server">https://raw.githubusercontent.com/alve89/j_mod_hrz_mobileconfig/master/updates.xml</server>
+  </updateservers>
+</extension>
